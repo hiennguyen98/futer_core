@@ -1,5 +1,7 @@
+import 'package:Futer/common/appstate_container.dart';
+import 'package:Futer/utils/custom_applocalization_delegate.dart';
 import 'package:flutter/material.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 void main() {
   runApp(MyApp());
 }
@@ -14,6 +16,15 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
+      localizationsDelegates: [
+        CustomAppLocalizationDelegate(StateContainer.of(context).curLanguage),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('vi', 'VI')
+      ],
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

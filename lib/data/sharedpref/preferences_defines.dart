@@ -5,5 +5,6 @@ class PreferenceDefines {
   static const String IS_LOGGED_IN = 'isLoggedIn';
   static const String auth_token = 'authToken';
   static const String IS_DARK_MODE = 'is_dark_mode';
+  static const String LOCALE_LANGUAGE = 'locale_language';
 
 }

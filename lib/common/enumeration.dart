@@ -4,3 +4,9 @@ enum AppEnvironments {
   demo,
   staging
 }
+
+enum AvailableLanguage {
+  ENGLISH,
+  VIETNAMESE,
+  DEFAULT
+}

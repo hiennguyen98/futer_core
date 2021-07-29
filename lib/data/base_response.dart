@@ -1,4 +1,4 @@
-import 'package:Futer/utils/AppLogger.dart';
+import 'package:Futer/utils/app_logger.dart';
 
 class ResponseCode {
   /// Code server Error

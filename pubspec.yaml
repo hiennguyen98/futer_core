@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   cupertino_icons: ^1.0.0
   easy_localization: 3.0.0
   shared_preferences: ^2.0.5
@@ -55,6 +57,8 @@ flutter:
       - asset: assets/fonts/Lato-Italic.ttf
       - asset: assets/fonts/Lato-Light.ttf
       - asset: assets/fonts/Lato-Regular.ttf
+flutter_intl:
+  enabled: true
 
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
