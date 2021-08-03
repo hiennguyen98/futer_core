@@ -1,4 +1,5 @@
 import 'package:Futer/common/appstate_container.dart';
+import 'package:Futer/common/enumeration.dart';
 import 'package:Futer/utils/custom_applocalization_delegate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,6 +22,10 @@ class MyApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
+      locale: StateContainer.of(context).curLanguage == null ||
+              StateContainer.of(context).curLanguage.availableLanguage == AvailableLanguage.DEFAULT
+            ? null
+            : StateContainer.of(context).curLanguage.getLocale(),
       supportedLocales: [
         const Locale('en', 'US'),
         const Locale('vi', 'VI')

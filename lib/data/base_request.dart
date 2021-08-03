@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:Futer/data/base_response.dart';
+import 'package:Futer/data/sharedpref/shared_preference_helper.dart';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
@@ -26,11 +27,24 @@ class BaseRequest {
     }
   }
 
+  Future<Map<String, String>> getDefHeaders() async {
+    String tokenAuth = await SharedPreferenceHelper().authToken;
+    return {
+      'Content-Type': 'application/json',
+      'apiToken': tokenAuth
+    };
+  }
+
   Future<BaseResponse> get(String endpoint, {Map<String, dynamic> headers = const{}}) async {
+
+    Map<String, String> mHeader =
+        await this.getDefHeaders().then((value){
+          return value;
+        });
 
     try {
       final response =
-          await _httpClient.get(Uri(host: _baseUrl, path: endpoint), headers: headers).timeout(timeLimit);
+          await _httpClient.get(Uri(host: _baseUrl, path: endpoint), headers: headers ?? mHeader).timeout(timeLimit);
 
       return await compute(_parseHTTPResponse, response.body);
     }on FormatException catch (exception) {
@@ -48,9 +62,15 @@ class BaseRequest {
   }
 
   Future<BaseResponse> post (String endpoint, dynamic data, {Map<String, dynamic> headers = const{}, Encoding encoding}) async {
+
+    Map<String, String> mHeader =
+    await this.getDefHeaders().then((value){
+      return value;
+    });
+
     try {
       final response = await _httpClient
-          .post(Uri(host: _baseUrl, path: endpoint), headers: headers, body: json.encode(data), encoding: encoding)
+          .post(Uri(host: _baseUrl, path: endpoint), headers: headers ?? mHeader, body: json.encode(data), encoding: encoding)
           .timeout(timeLimit);
 
       return await compute(_parseHTTPResponse, response.body);
@@ -70,10 +90,13 @@ class BaseRequest {
   }
 
   Future<BaseResponse> put(String endpoint, dynamic data, {Map<String, String> headers = const {}, Encoding encoding}) async {
-
+    Map<String, String> mHeader =
+    await this.getDefHeaders().then((value){
+      return value;
+    });
     try {
       final response = await _httpClient
-          .put(Uri(host: _baseUrl, path: endpoint), headers: headers, body: json.encode(data), encoding: encoding)
+          .put(Uri(host: _baseUrl, path: endpoint), headers: headers ?? mHeader, body: json.encode(data), encoding: encoding)
           .timeout(timeLimit);
 
       return await compute(_parseHTTPResponse, response.body);
@@ -93,10 +116,14 @@ class BaseRequest {
   }
 
   Future<BaseResponse> delete(String endpoint, dynamic data, {Map<String, String> headers = const {}}) async {
+    Map<String, String> mHeader =
+    await this.getDefHeaders().then((value){
+      return value;
+    });
 
     try {
       final response =
-      await _httpClient.delete(Uri(host: _baseUrl, path: endpoint), headers: headers).timeout(timeLimit);
+      await _httpClient.delete(Uri(host: _baseUrl, path: endpoint), headers: headers ?? mHeader).timeout(timeLimit);
 
       return await compute(_parseHTTPResponse, response.body);
     } on FormatException catch (exception) {
@@ -115,6 +142,10 @@ class BaseRequest {
   }
 
   Future<BaseResponse> patch(String endpoint, dynamic data, {Map<String, String> headers = const {}, Encoding encoding}) async {
+    Map<String, String> mHeader =
+    await this.getDefHeaders().then((value){
+      return value;
+    });
 
     try {
       final response = await _httpClient

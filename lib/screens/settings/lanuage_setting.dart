@@ -39,7 +39,7 @@ class LanguageSetting {
   Locale getLocale() {
     String localeStr = getLocaleString();
     if(localeStr == 'DEFAULT') {
-      return Locale('vi');
+      return Locale('en');
     }
     return Locale(localeStr);
   }
