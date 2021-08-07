@@ -1,5 +1,6 @@
 
 class FontSizeApp {
+  static const double SIZE_8 = 8.0;
   static const double SIZE_12 = 12.0;
   static const double SIZE_13 = 13.0;
   static const double SIZE_14 = 14.0;

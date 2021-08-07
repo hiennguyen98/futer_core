@@ -18,14 +18,14 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       localizationsDelegates: [
-        CustomAppLocalizationDelegate(StateContainer.of(context).curLanguage),
+        // CustomAppLocalizationDelegate(StateContainer.of(context).curLanguage),
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      locale: StateContainer.of(context).curLanguage == null ||
-              StateContainer.of(context).curLanguage.availableLanguage == AvailableLanguage.DEFAULT
-            ? null
-            : StateContainer.of(context).curLanguage.getLocale(),
+      // locale: StateContainer.of(context).curLanguage == null ||
+      //         StateContainer.of(context).curLanguage.availableLanguage == AvailableLanguage.DEFAULT
+      //       ? null
+      //       : StateContainer.of(context).curLanguage.getLocale(),
       supportedLocales: [
         const Locale('en', 'US'),
         const Locale('vi', 'VI')
